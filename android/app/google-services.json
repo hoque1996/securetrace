@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "619068296330",
+    "project_id": "pinkwing-25f3f",
+    "storage_bucket": "pinkwing-25f3f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:619068296330:android:176190ea7848808c403173",
+        "android_client_info": {
+          "package_name": "com.example.secure_trace"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "619068296330-pee7qcrqm8j2jvk8cdmkpc051qratgib.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.secure_trace",
+            "certificate_hash": "dc8de70bcdda41184f5368213a39c75e4da6c293"
+          }
+        },
+        {
+          "client_id": "619068296330-lhd3vnvm1u3ackgd1bg4eu0f56dgls6c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdq4Abew5S48rWitESKTHqH45ln39lt10"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "619068296330-lhd3vnvm1u3ackgd1bg4eu0f56dgls6c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
