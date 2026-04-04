@@ -7,12 +7,12 @@ plugins {
 
 android {
     namespace = "com.example.secure_trace"
-    compileSdk = 34
+    compileSdk = 36   // ✅ 34 se 36 kar diya (plugins require 35/36)
 
     defaultConfig {
         applicationId = "com.example.secure_trace"
         minSdk = 23
-        targetSdk = 34
+        targetSdk = 36   // ✅ optional but recommended, compileSdk ke saath sync mein rakho
         versionCode = 1
         versionName = "1.0"
     }
