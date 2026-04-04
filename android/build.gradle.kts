@@ -5,7 +5,8 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath("com.android.tools.build:gradle:8.4.2")
+        // 🔁 Change AGP version from 8.4.2 to 8.9.1
+        classpath("com.android.tools.build:gradle:8.9.1")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:2.1.21")
     }
 }
@@ -15,11 +16,12 @@ allprojects {
         google()
         mavenCentral()
     }
-    configurations.all {
-        resolutionStrategy {
-            force("com.android.tools.build:gradle:8.4.2")
-        }
-    }
+    // ❌ Remove this entire 'configurations.all' block - it was forcing old AGP version
+    // configurations.all {
+    //     resolutionStrategy {
+    //         force("com.android.tools.build:gradle:8.4.2")
+    //     }
+    // }
 }
 
 val newBuildDir: Directory =
