@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build:
@@ -19,20 +22,38 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+        with:
+          packages: 'platforms;android-36'
+          # Android SDK 36 install karega jo compileSdk 36 ke liye chahiye
+
+      - name: Accept Android Licenses
+        run: |
+          yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses
+        continue-on-error: true
+
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.41.5'
+          flutter-version: '3.41.5'  # Tumhara current version
           channel: 'stable'
+
+      - name: Flutter doctor
+        run: flutter doctor -v
 
       - name: Install dependencies
         run: flutter pub get
 
+      - name: Clean build (optional)
+        run: flutter clean
+
       - name: Build APK
-        run: flutter build apk --release
+        run: flutter build apk --release --verbose
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: securetrace-apk
           path: build/app/outputs/flutter-apk/app-release.apk
+          if-no-files-found: error
