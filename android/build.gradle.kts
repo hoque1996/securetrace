@@ -5,7 +5,6 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        // ✅ AGP upgraded to 8.9.1 (required for compileSdk 36)
         classpath("com.android.tools.build:gradle:8.9.1")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:2.1.21")
     }
@@ -16,7 +15,6 @@ allprojects {
         google()
         mavenCentral()
     }
-    // ✅ Force block completely removed – ab koi purani AGP force nahi hogi
 }
 
 val newBuildDir: Directory =
