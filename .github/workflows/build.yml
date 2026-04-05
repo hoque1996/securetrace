@@ -37,6 +37,14 @@ jobs:
       - name: Clean build
         run: flutter clean
 
+      - name: Clean Gradle cache
+        run: |
+          cd android
+          chmod +x gradlew
+          ./gradlew clean --refresh-dependencies
+          cd ..
+          rm -rf android/.gradle
+
       - name: Build APK
         run: flutter build apk --release
 
