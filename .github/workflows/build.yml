@@ -2,19 +2,15 @@ name: Flutter APK Build
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
   pull_request:
-    branches:
-      - main
+    branches: [ main ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Setup Java
         uses: actions/setup-java@v4
@@ -22,21 +18,14 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
-        with:
-          packages: 'platforms;android-36'
-          # Android SDK 36 install karega jo compileSdk 36 ke liye chahiye
-
-      - name: Accept Android Licenses
+      - name: Install Android SDK 36
         run: |
-          yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses
-        continue-on-error: true
+          yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager "platforms;android-36"
 
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.41.5'  # Tumhara current version
+          flutter-version: '3.41.5'
           channel: 'stable'
 
       - name: Flutter doctor
@@ -45,15 +34,14 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Clean build (optional)
+      - name: Clean build
         run: flutter clean
 
       - name: Build APK
-        run: flutter build apk --release --verbose
+        run: flutter build apk --release
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: securetrace-apk
           path: build/app/outputs/flutter-apk/app-release.apk
-          if-no-files-found: error
